@@ -15,7 +15,50 @@ and present in the same paper. This time I went through the gallery and
 decided a [collapsible indented
 tree](https://bl.ocks.org/mbostock/1093025) will be good fit. After
 finishing the required tweaking, with minimal knowledge of the framework
-- I'm fan enough to go ahead and dive in. So, here goes.
+\- I'm fan enough to go ahead and dive in. So, here goes.
+
+
+### 22 January 2018
+
+I made an easy directory structure to work with github pages.
+
+```
+├── boilerplate
+│   ├── custom.css
+│   ├── driver.js
+│   └── index.html
+├── common
+│   ├── common.css
+│   └── conventional-margin.js
+├── data
+│   ├── flare.json
+│   └── letter-frequency.tsv
+├── docs
+│   ├── constant.md
+│   ├── exps.md
+│   └── notes
+│       └── README.md
+├── exps
+│   ├── bar-chart
+│   │   ├── custom.css
+│   │   ├── driver.js
+│   │   └── index.html
+│   └── multi-series-line
+├── index.sh
+├── LICENSE
+└── README.md
+```
+
+Pretty simple. Each experiment is started by copying the boilerplate,
+with some hacks to create a library-like with common and data.
+`index.sh` creates a README which github pages seem to render nicely.
+
+
+Started with a [bar-chart](https://bl.ocks.org/mbostock/3885304).  And
+following it while looking at [Time Series Line
+plot](https://bl.ocks.org/mbostock/3884955) came across [Margin
+Conventions](https://bl.ocks.org/mbostock/3019563).
+
 
 
 
