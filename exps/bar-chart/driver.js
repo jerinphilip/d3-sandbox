@@ -1,4 +1,6 @@
 
+x = x.padding(0.1);
+
 var g = svg.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
