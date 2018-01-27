@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title> Boilerplate </title>
+    <link rel="stylesheet" type="text/css" href="/d3-sandbox/common/common.css"/>
+    <link rel="stylesheet" type="text/css" href="custom.css"/>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h1> Raindrops </h1>
+        </div>
+        <div class="row">
+            <div class="col-4" id="main">
+                <div class="form-group">
+                    <label for="raindrop_size">Size</label>
+                    <input type="range" 
+                           min="10" max="200"
+                                     value="10"
+                                     class="form-control"
+                                     id="raindrop_size">
+                </div>
+                <div class="form-group">
+                    <label for="raindrop_count">Count</label>
+                    <input type="range" 
+                           min="100" max="1000"
+                                     value="100"
+                                     class="form-control"
+                                     id="raindrop_count">
+                </div>
+            </div>
+            <div id="svg" class="col-8">
+            </div>
+        </div>
+    </div>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <!-- <script
+        src="/d3-sandbox/common/conventional-margin.js"></script> -->
+    <script src="driver.js"></script>
+</body>
+
+
