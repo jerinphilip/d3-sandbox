@@ -1,0 +1,19 @@
+.bar {
+    width: 25px;
+    margin-right: 5px;
+    background-color: #C1ADC4;
+    float: left;
+    cursor: pointer;
+}
+
+.bar:last-child {
+    margin-right: 0;
+}
+
+.bar:hover {
+    background-color: #927A94;
+}
+
+button {
+    cursor: pointer;
+}
