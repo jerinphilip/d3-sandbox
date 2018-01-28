@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title> Boilerplate </title>
+    <link rel="stylesheet" type="text/css" href="/d3-sandbox/common/common.css"/>
+    <link rel="stylesheet" type="text/css" href="custom.css"/>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-success"> circle! </button>
+                <svg width="960" height="500"></svg>
+
+                <h3> Info </h3>
+                <p> Based on <a
+                                 href="https://bl.ocks.org/mbostock/ad550c9d6d156ac726b45f48fa6ff2c7">this
+                                 block</a> in an attempt to learn
+                             transitions. </p>
+
+                <div class="row">
+                    <div class="col-4">
+                        <label > time-window </label>
+                    <input type="range" class="form-control" min=1000
+                                        max=5000 value=2000
+                                        id="time-window">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="/d3-sandbox/common/conventional-margin.js"></script>
+    <script src="driver.js"></script>
+</body>
+

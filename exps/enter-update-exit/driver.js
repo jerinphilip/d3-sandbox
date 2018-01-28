@@ -43,7 +43,9 @@ function update() {
 
 
     // Exit selection: Remove elements without data from the DOM
-    selection.exit().remove();
+    selection.exit().transition()
+        .delay(3750)
+        .remove();
 
     // Print underlying data array
     d3.select("#dataset").text(dataset);
