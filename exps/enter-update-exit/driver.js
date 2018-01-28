@@ -12,10 +12,12 @@ function update() {
     var selection = d3.select("#chart")
         .selectAll(".bar").data(dataset)
         .style("height", function(d){ 
-            return d; 
+            return d + "px"; 
         })
+        .style("background", "#00f")
         .style("margin-top", function(d){ 
-            return maxHeight - d; 
+            var mtop = maxHeight - d
+            return mtop + "px"; 
         });
 
 
@@ -33,7 +35,7 @@ function update() {
             return (maxHeight - d) + "px"; 
             //return 0;
         })
-        //.style("background", "#f00")
+        .style("background", "#f00")
         .on("click", function(e, i){
             dataset.splice(i, 1);
             update();

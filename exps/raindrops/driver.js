@@ -1,6 +1,7 @@
 // svg.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 var width = 640,
     height = 500;
+
 // could use transparent gradient overlay to vary raindrop color
 function draw(count, size){
     var svg = d3.select("#svg").append("svg")
@@ -31,7 +32,7 @@ function draw(count, size){
     svg.selectAll("path") .data(d3.range(count))
         .enter().append("path")
         .attr("fill", "url(#gradient)")
-        .attr("d", function() { return raindrop(size + Math.random() * 20); })
+        .attr("d", function() { return raindrop(size + Math.random() * 2); })
         .attr("transform", function(d) {
             return "rotate(" + d + ")"
                 + "translate(" + (height / 4 + Math.random() * height / 6) + ",0)"
