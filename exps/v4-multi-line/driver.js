@@ -1,7 +1,7 @@
 
 
 // Define margins, dimensions, and some line colors
-const margin = {top: 40, right: 120, bottom: 30, left: 40};
+const margin = {top: 40, right: 120, bottom: 80, left: 80};
 const width = 800 - margin.left - margin.right;
 const height = 400 - margin.top - margin.bottom;
 
@@ -40,19 +40,43 @@ let states, tipBox;
 d3.json('bouncer.analysis', d => {
     states = d;
     original = d;
-    mx = {
-        "y": 1e6,
-        "x": 8e4
-    }
 
     var options = extract(d);
     var selected = options;
 
-    const x = d3.scaleLinear().domain([0, mx.x]).range([0, width]);     
-    const y = d3.scaleLinear().domain([0, mx.y]).range([height, 0]);
+    const x = d3.scaleLinear().domain([0, 1]).range([0, width]);     
+    const y = d3.scaleLinear().domain([0, 1]).range([height, 0]);
 
     const chart = d3.select('svg').append('g')
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+    /*
+    chart.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left)
+        .attr("x",0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .text("vocabulary size");
+        */
+
+    chart.append("text")
+        .attr("transform",
+            "translate(" + (width/2) + " ," +
+            (height + margin.top + 20) + ")")
+        .style("text-anchor", "middle")
+        .text("n-grams");
+
+    // text label for the y axis
+    chart.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left)
+        .attr("x",0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .text("unique n-grams");
+
+
 
     const tooltip = d3.select('#tooltip');
     const tooltipLine = chart.append('line');
@@ -87,10 +111,7 @@ d3.json('bouncer.analysis', d => {
         return _d;
     }
 
-    var updateAxis = function(v){
-        x.domain([0, v.x]);
-        y.domain([0, v.y]);
-    }
+
 
     _key = d => d["ngrams"]+ '-' + d["dataset"] + '-' + d["language"];
 
@@ -99,11 +120,22 @@ d3.json('bouncer.analysis', d => {
     }
 
 
-    const xAxis = d3.axisBottom(x).tickFormat(d3.format('.4'));
+    const xAxis = d3.axisBottom(x).tickFormat(d3.format('.2s'));
     const yAxis = d3.axisLeft(y).tickFormat(d3.format('.2s'));
-    chart.append('g').call(yAxis); 
-    chart.append('g').attr('transform', 'translate(0,' + height + ')').call(xAxis);
-    chart.append('text').html('ngram stats').attr('x', 200);
+
+    var axes = chart.append('g');
+
+    var updateAxis = function(v){
+        x.domain([0, v.x+0.1*v.x]);
+        axes.selectAll('.axis').remove();
+        y.domain([0, v.y+0.1*v.y]);
+        axes.append('g').attr('class', 'axis').call(yAxis); 
+        axes.append('g').attr('class', 'axis').attr('transform', 'translate(0,' + height + ')').call(xAxis);
+        // axes.append('text').attr('class', 'axis').html('ngram stats').attr('x', 200);
+    }
+
+
+    updateAxis(findMax(d.filter(inSelect)));
 
     var issue = chart.selectAll().data(d).enter()
 
@@ -115,15 +147,6 @@ d3.json('bouncer.analysis', d => {
 
     paths.attr('d', line_or_null);
 
-    chart.selectAll()
-        .data(d.filter(inSelect)).enter()
-        .append('text')
-        .html(_key)
-        .attr('fill', _color)
-        .attr('alignment-baseline', 'middle')
-        .attr('x', width)
-        .attr('dx', '.5em')
-        .attr('y', d => y(d.data[d.data.length-1][1])); 
 
     tipBox = chart.append('rect')
         .attr('width', width)
@@ -132,23 +155,23 @@ d3.json('bouncer.analysis', d => {
         .on('mousemove', drawTooltip)
         .on('mouseout', removeTooltip);
 
-    /*
     var categories = d.length;
     var legendSpace = 300/categories;
 
+    /*
     issue.append('rect')
         .attr('width', 10)
         .attr('height', 10)
-        .attr("x", width + (margin.right/3) - 15) 
+        .attr("x", width + (margin.right/5) - 15) 
         .attr("y", function (d, i) { return (legendSpace)+i*(legendSpace) - 8; })  // spacing
         .attr("fill", _color)
         .attr("class", "legend-box")
 
     issue.append("text")
-        .attr("x", width + (margin.right/3))
+        .attr("x", width + (margin.right/5))
         .attr("y", function (d, i) { return (legendSpace)+i*(legendSpace); })  // (return (11.25/2 =) 5.625) + i * (5.625)
         .text(_key);
-    */
+        */
 
 
     var control = d3.select("#controls");
@@ -167,7 +190,7 @@ d3.json('bouncer.analysis', d => {
         return xs;
     }
 
-    controls.append('h4').text(d => d.key);
+    controls.append('h6').text(d => d.key);
     var boxes = controls.append('div')
         .attr('id', d => d.key)
         .selectAll('div')
@@ -198,7 +221,6 @@ d3.json('bouncer.analysis', d => {
 
 
             var v =  findMax(original);
-            console.log("v:", v);
             updateAxis(v);
             paths
                 .transition()
@@ -220,10 +242,14 @@ d3.json('bouncer.analysis', d => {
         var step = 10;
         const year = Math.floor((x.invert(d3.mouse(tipBox.node())[0]) + 5) / step) * step;
 
+        console.log(year);
+
         states.sort((a, b) => {
-            left = b.data.find(h => h[0] == year);
-            right = a.data.find(h => h[0] == year);
-            return left[0] - right[0];
+            left = b.data.find(h => h[0] >= year);
+            right = a.data.find(h => h[0] >= year);
+            if (left === undefined || right === undefined)
+                return 1e7;
+            return left[1] - right[1];
         })  
 
         tooltipLine.attr('stroke', 'black')
@@ -234,13 +260,13 @@ d3.json('bouncer.analysis', d => {
 
         tooltip.html(year)
             .style('display', 'block')
-            .style('left', d3.event.pageX + 20)
+            .style('left', d3.event.pageX + 10)
             .style('top', d3.event.pageY - 20)
             .selectAll()
             .data(states.filter(inSelect)).enter()
             .append('div')
-            .style('color', color)
-            .html(d => _key(d) + ': ' + d.data.find(h => h[0] == year)[1]);
+            .style('color', _color)
+            .html(d => _key(d) + ': ' + d.data.find(h => h[0] >= year)[1]);
     }
 })
 

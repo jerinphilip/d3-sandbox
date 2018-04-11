@@ -80,8 +80,8 @@ function drawTooltip() {
   
   tooltip.html(year)
     .style('display', 'block')
-    .style('left', d3.event.pageX + 20)
-    .style('top', d3.event.pageY - 20)
+    .style('left', d3.event.pageX + 10)
+    .style('top', d3.event.pageY + 10)
     .selectAll()
     .data(states).enter()
     .append('div')
