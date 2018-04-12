@@ -1,5 +1,6 @@
 <html>
     <head>
+        <title> Corpora comparisons </title>
         <script src="https://d3js.org/d3.v4.min.js"></script>
         <link rel="stylesheet" type="text/css" href="custom.css"/>
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
@@ -8,20 +9,26 @@
     </head>
     <body>
         <div class="container">
+            <h2> Corpora Comparison </h2>
             <div class="row">
                 <div class="col-12">
                     <div class="row">
-                        <svg width='800' height='400'></svg>
-                        <div id='tooltip' style='position:absolute;background-color:lightgray;padding:5px'></div>
+                        <div class="col">
+                            <svg width='800' height='400'></svg>
+                            <div id='tooltip' style='position:absolute;background-color:lightgray;padding:5px'></div>
+                        </div>
                     </div>
-
                     <div class="row">
-                        <div class="col-4">
-                            <h5> Controls </h5>
-                            <div class="row" id="controls">
+                        <div class="col-5">
+                            <div class="card">
+                                <div class="card-header">Controls</div>
+                                <div class="card-body">
+                                    <div class="row" id="controls">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-8">
+                        <div class="col-7">
                             <div class="card">
                                 <div class="card-header">
                                     Comparison of narrow(?) domain
@@ -44,6 +51,18 @@
                                             <li><b>Match Report</b></li>
                                             <li><b>Bouncer Column</b></li>
                                         </ul>
+
+                                        Check/uncheck controls to draw
+                                        comparisons on the required
+                                        metric. For example, to compare
+                                        1-gram vs 2-gram growth for
+                                        Hindi in commentary dataset,
+                                        check only 1, 2 in ngrams
+                                        section, hi in language section,
+                                        and commentary in dataset
+                                        section.
+
+
                                     </div>
                                 </div>
                             </div>
