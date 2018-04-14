@@ -3,6 +3,8 @@ d3.csv('table.csv', function(data){
 
     var hist_fn = d3.histogram().value(d => d.bleu).thresholds(20);
     var bins = hist_fn(data);
+    var avg_bleu = d3.sum(data, d => d.bleu)/data.length;
+    console.log(avg_bleu);
     bins.reverse();
 
     var universal = d3.select("#content")
@@ -78,6 +80,9 @@ d3.csv('table.csv', function(data){
         .attr("class", "axis axis--x")
         .attr("transform", _translate(0, 0))
         .call(d3.axisBottom(x))
+
+    d3.select("#avg-bleu")
+        .text(avg_bleu);
 
 
 });
