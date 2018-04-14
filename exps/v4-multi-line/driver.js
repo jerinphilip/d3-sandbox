@@ -239,7 +239,7 @@ d3.json('bouncer.analysis', d => {
     }
 
     function drawTooltip() {
-        var step = 10;
+        var step = 1;
         const year = Math.floor((x.invert(d3.mouse(tipBox.node())[0]) + 5) / step) * step;
 
         console.log(year);
