@@ -52,6 +52,11 @@ var update_histogram = function(bins) {
         return d.x0;
     }
 
+    var odd_even = function(d, i){
+        if (i%2 == 0){ return "steelblue"; }
+        else { return "coral"; }
+    }
+
     var bar = g.selectAll(".bar")
         .remove()
         .exit()
@@ -59,11 +64,13 @@ var update_histogram = function(bins) {
         .enter().append("g")
         .attr("class", "bar")
         .attr("transform", d => _translate(d.x0, d.length))
+
     bar.append("rect")
         .attr("x", _debug) 
         .attr("width", binwidth)
         .attr("height", d => height - y(d.length))
-        .attr("fill", "steelblue")
+        .attr("fill", odd_even);
+        //.attr("fill", "steelblue")
 
     bar.append("text")
         .attr("dy", "-0.5em")
@@ -83,10 +90,15 @@ var load_summary = function(dataset){
 
     d3.csv(path, function(data){
         var hist_fn = d3.histogram().value(d => d.bleu).thresholds(20);
+        data.forEach(function(d){
+            d.bleu = + d.bleu;
+        });
         var bins = hist_fn(data);
+        console.log(bins);
         var avg_bleu = d3.sum(data, d => d.bleu)/data.length;
         console.log(avg_bleu);
         bins.reverse();
+
         update_text(bins);
         update_histogram(bins);
 
