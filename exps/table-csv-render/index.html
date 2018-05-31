@@ -15,7 +15,8 @@
             <h2> Translation Quality </h2>
             <h3> Summary </h3>
             <p> The following histogram summarizes BLEU ranges for
-            predictions in the test-set. </p>
+            predictions in the test-set.  Click on bars to see the
+            translations with BLEU in corresponding interval. </p>
 
             <p> Average BLEU: <span id="avg-bleu"></span> </p>
 
@@ -24,6 +25,7 @@
                     <svg height="400" width="800"></svg>
                 </div>
                 <div class="col-4">
+                    <h6> Dataset </h6>
                     <select name="dataset"
                             onchange="load_summary(this.value)">
                         <option value="ipl">ipl</option>
