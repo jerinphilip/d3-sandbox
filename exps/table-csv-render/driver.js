@@ -1,4 +1,10 @@
+var active = new Set([]);
+var toggle = function(i, bins){
+    update_text([bins[i]]);
+}
+
 var update_text = function(bins){
+    bins.reverse();
     var universal = d3.select("#content")
         .selectAll("div")
         .remove()
@@ -82,6 +88,10 @@ var update_histogram = function(bins) {
         .attr("class", "axis axis--x")
         .attr("transform", _translate(0, 0))
         .call(d3.axisBottom(x))
+
+    svg.selectAll(".bar").on("click", function(d, i){
+        toggle(i, bins);
+    });
 }
 
 var load_summary = function(dataset){
@@ -97,7 +107,6 @@ var load_summary = function(dataset){
         console.log(bins);
         var avg_bleu = d3.sum(data, d => d.bleu)/data.length;
         console.log(avg_bleu);
-        bins.reverse();
 
         update_text(bins);
         update_histogram(bins);
