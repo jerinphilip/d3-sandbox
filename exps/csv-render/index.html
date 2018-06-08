@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title> Boilerplate </title>
+    <link rel="stylesheet" type="text/css" href="/d3-sandbox/common/common.css"/>
+    <link rel="stylesheet" type="text/css" href="custom.css"/>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+
+
+        <hr/>
+        <div class="row">
+            <div class="col-12" id="content">
+                <h4> Transfer across rows </h4>
+                <p> Our objective here is to analyze how training on one
+                newpaper column for a particular category transfers to
+                another column. </p>
+                
+                <p> The column headers indicate which dataset BLEU
+                scores are reported on, and the row labels indicate
+                which column the model is trained on.<p>
+
+                <table class="table bleu-table" id="raw-values">
+                    <thead>
+                        <tr>
+                            <td> </td>
+                            <th class="transfer-bouncer split-train">bouncer train</th>
+                            <th class="transfer-bouncer split-test">bouncer test</th>
+                            <th class="transfer-bouncer split-dev">bouncer dev</th>
+                            <th class="transfer-experts split-train">experts train</th>
+                            <th class="transfer-experts split-test">experts test</th>
+                            <th class="transfer-experts split-dev">experts dev</th>
+                            <th class="transfer-ipl split-train">ipl train</th>
+                            <th class="transfer-ipl split-test">ipl test</th>
+                            <th class="transfer-ipl split-dev">ipl dev</th>
+                            <th class="transfer-match-report split-train">match-report train</th>
+                            <th class="transfer-match-report split-test">match-report test</th>
+                            <th class="transfer-match-report split-dev">match-report dev</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="train-bouncer">bouncer</td>
+                            <td class="train-bouncer transfer-bouncer split-train">87.44</td>
+                            <td class="train-bouncer transfer-bouncer split-test">52.50</td>
+                            <td class="train-bouncer transfer-bouncer split-dev">52.70</td>
+                            <td class="train-bouncer transfer-experts split-train">45.18</td>
+                            <td class="train-bouncer transfer-experts split-test">46.11</td>
+                            <td class="train-bouncer transfer-experts split-dev">45.13</td>
+                            <td class="train-bouncer transfer-ipl split-train">51.98</td>
+                            <td class="train-bouncer transfer-ipl split-test">52.95</td>
+                            <td class="train-bouncer transfer-ipl split-dev">52.67</td>
+                            <td class="train-bouncer transfer-match-report split-train">54.38</td>
+                            <td class="train-bouncer transfer-match-report split-test">54.60</td>
+                            <td class="train-bouncer transfer-match-report split-dev">54.43</td>
+                        </tr>
+                        <tr>
+                            <td class="train-experts">experts</td>
+                            <td class="train-experts transfer-bouncer split-train">35.33</td>
+                            <td class="train-experts transfer-bouncer split-test">35.05</td>
+                            <td class="train-experts transfer-bouncer split-dev">35.32</td>
+                            <td class="train-experts transfer-experts split-train">89.17</td>
+                            <td class="train-experts transfer-experts split-test">43.45</td>
+                            <td class="train-experts transfer-experts split-dev">43.42</td>
+                            <td class="train-experts transfer-ipl split-train">36.87</td>
+                            <td class="train-experts transfer-ipl split-test">36.88</td>
+                            <td class="train-experts transfer-ipl split-dev">36.41</td>
+                            <td class="train-experts transfer-match-report split-train">34.49</td>
+                            <td class="train-experts transfer-match-report split-test">35.44</td>
+                            <td class="train-experts transfer-match-report split-dev">34.92</td>
+                        </tr>
+                        <tr>
+                            <td class="train-ipl">ipl</td>
+                            <td class="train-ipl transfer-bouncer split-train">21.83</td>
+                            <td class="train-ipl transfer-bouncer split-test">21.92</td>
+                            <td class="train-ipl transfer-bouncer split-dev">22.15</td>
+                            <td class="train-ipl transfer-experts split-train">20.57</td>
+                            <td class="train-ipl transfer-experts split-test">20.96</td>
+                            <td class="train-ipl transfer-experts split-dev">20.88</td>
+                            <td class="train-ipl transfer-ipl split-train">49.97</td>
+                            <td class="train-ipl transfer-ipl split-test">33.49</td>
+                            <td class="train-ipl transfer-ipl split-dev">32.89</td>
+                            <td class="train-ipl transfer-match-report split-train">23.34</td>
+                            <td class="train-ipl transfer-match-report split-test">23.65</td>
+                            <td class="train-ipl transfer-match-report split-dev">23.26</td>
+                        </tr>
+                        <tr>
+                            <td class="train-match-report">match-report</td>
+                            <td class="train-match-report transfer-bouncer split-train">32.94</td>
+                            <td class="train-match-report transfer-bouncer split-test">33.48</td>
+                            <td class="train-match-report transfer-bouncer split-dev">33.31</td>
+                            <td class="train-match-report transfer-experts split-train">26.48</td>
+                            <td class="train-match-report transfer-experts split-test">27.31</td>
+                            <td class="train-match-report transfer-experts split-dev">26.53</td>
+                            <td class="train-match-report transfer-ipl split-train">39.67</td>
+                            <td class="train-match-report transfer-ipl split-test">42.38</td>
+                            <td class="train-match-report transfer-ipl split-dev">42.00</td>
+                            <td class="train-match-report transfer-match-report split-train">91.90</td>
+                            <td class="train-match-report transfer-match-report split-test">56.82</td>
+                            <td class="train-match-report transfer-match-report split-dev">56.43</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="table bleu-table" id="delta-values">
+                    <thead>
+                        <tr>
+                            <td> </td>
+                            <th class="transfer-bouncer split-train">bouncer train</th>
+                            <th class="transfer-bouncer split-test">bouncer test</th>
+                            <th class="transfer-bouncer split-dev">bouncer dev</th>
+                            <th class="transfer-experts split-train">experts train</th>
+                            <th class="transfer-experts split-test">experts test</th>
+                            <th class="transfer-experts split-dev">experts dev</th>
+                            <th class="transfer-ipl split-train">ipl train</th>
+                            <th class="transfer-ipl split-test">ipl test</th>
+                            <th class="transfer-ipl split-dev">ipl dev</th>
+                            <th class="transfer-match-report split-train">match-report train</th>
+                            <th class="transfer-match-report split-test">match-report test</th>
+                            <th class="transfer-match-report split-dev">match-report dev</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td class="train-bouncer">bouncer</td>
+                            <td class="train-bouncer transfer-bouncer split-train">0.0</td>
+                            <td class="train-bouncer transfer-bouncer split-test">0.0</td>
+                            <td class="train-bouncer transfer-bouncer split-dev">0.0</td>
+                            <td class="train-bouncer transfer-experts split-train">-43.99</td>
+                            <td class="train-bouncer transfer-experts split-test">2.66</td>
+                            <td class="train-bouncer transfer-experts split-dev">1.71</td>
+                            <td class="train-bouncer transfer-ipl split-train">2.01</td>
+                            <td class="train-bouncer transfer-ipl split-test">19.46</td>
+                            <td class="train-bouncer transfer-ipl split-dev">19.78</td>
+                            <td class="train-bouncer transfer-match-report split-train">-37.52</td>
+                            <td class="train-bouncer transfer-match-report split-test">-2.22</td>
+                            <td class="train-bouncer transfer-match-report split-dev">-2.0</td>
+                        </tr>
+                        <tr>
+                            <td class="train-experts">experts</td>
+                            <td class="train-experts transfer-bouncer split-train">-52.11</td>
+                            <td class="train-experts transfer-bouncer split-test">-17.45</td>
+                            <td class="train-experts transfer-bouncer split-dev">-17.38</td>
+                            <td class="train-experts transfer-experts split-train">0.0</td>
+                            <td class="train-experts transfer-experts split-test">0.0</td>
+                            <td class="train-experts transfer-experts split-dev">0.0</td>
+                            <td class="train-experts transfer-ipl split-train">-13.1</td>
+                            <td class="train-experts transfer-ipl split-test">3.39</td>
+                            <td class="train-experts transfer-ipl split-dev">3.52</td>
+                            <td class="train-experts transfer-match-report split-train">-57.41</td>
+                            <td class="train-experts transfer-match-report split-test">-21.38</td>
+                            <td class="train-experts transfer-match-report split-dev">-21.51</td>
+                        </tr>
+                        <tr>
+                            <td class="train-ipl">ipl</td>
+                            <td class="train-ipl transfer-bouncer split-train">-65.61</td>
+                            <td class="train-ipl transfer-bouncer split-test">-30.58</td>
+                            <td class="train-ipl transfer-bouncer split-dev">-30.55</td>
+                            <td class="train-ipl transfer-experts split-train">-68.6</td>
+                            <td class="train-ipl transfer-experts split-test">-22.49</td>
+                            <td class="train-ipl transfer-experts split-dev">-22.54</td>
+                            <td class="train-ipl transfer-ipl split-train">0.0</td>
+                            <td class="train-ipl transfer-ipl split-test">0.0</td>
+                            <td class="train-ipl transfer-ipl split-dev">0.0</td>
+                            <td class="train-ipl transfer-match-report split-train">-68.56</td>
+                            <td class="train-ipl transfer-match-report split-test">-33.17</td>
+                            <td class="train-ipl transfer-match-report split-dev">-33.17</td>
+                        </tr>
+                        <tr>
+                            <td class="train-match-report">match-report</td>
+                            <td class="train-match-report transfer-bouncer split-train">-54.5</td>
+                            <td class="train-match-report transfer-bouncer split-test">-19.02</td>
+                            <td class="train-match-report transfer-bouncer split-dev">-19.39</td>
+                            <td class="train-match-report transfer-experts split-train">-62.69</td>
+                            <td class="train-match-report transfer-experts split-test">-16.14</td>
+                            <td class="train-match-report transfer-experts split-dev">-16.89</td>
+                            <td class="train-match-report transfer-ipl split-train">-10.3</td>
+                            <td class="train-match-report transfer-ipl split-test">8.89</td>
+                            <td class="train-match-report transfer-ipl split-dev">9.11</td>
+                            <td class="train-match-report transfer-match-report split-train">0.0</td>
+                            <td class="train-match-report transfer-match-report split-test">0.0</td>
+                            <td class="train-match-report transfer-match-report split-dev">0.0</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-primary" onclick='$(".bleu-table").toggle()'>Raw/Delta view</button>
+                <button class="btn btn-primary" onclick='$(".split-train").toggle()'>Toggle Training</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="/d3-sandbox/common/conventional-margin.js"></script>
+    <script src="driver.js"></script>
+</body>
+
