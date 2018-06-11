@@ -108,7 +108,7 @@ var load_summary = function(dataset){
         var avg_bleu = d3.sum(data, d => d.bleu)/data.length;
         console.log(avg_bleu);
 
-        update_text(bins);
+        // update_text(bins[0]);
         update_histogram(bins);
 
         d3.select("#avg-bleu")
@@ -118,4 +118,4 @@ var load_summary = function(dataset){
 }
 
 
-load_summary("ipl");
+load_summary("all_en-hi");
