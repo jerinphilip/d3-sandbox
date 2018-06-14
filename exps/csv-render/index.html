@@ -221,13 +221,47 @@
 
                     </tbody>
                 </table>
-
             </div>
         </div>
         <div class="row">
             <div class="col-12">
                 <button class="btn btn-primary" onclick='$(".bleu-table").toggle()'>Raw/Delta view</button>
                 <button class="btn btn-primary" onclick='$(".split-train").toggle()'>Toggle Training</button>
+            </div>
+        </div>
+
+        <hr/>
+        <div class="row">
+            <div class="col-12">
+                <h4> Inspecting inside </h4>
+                <p>In this section, we try to see what has improved in each
+                individual column, individual vs-all dataset. </p>
+                <div class="row">
+                    <div id="sample-content" class="col-9">
+                    </div>
+                    <div class="col-3">
+                        <div>
+                        <select class="form-control" onchange="load(this.value)">
+                            <option value="bouncer">bouncer</option>
+                            <option value="ipl">ipl</option>
+                            <option value="match-report">match-report</option>
+                            <option value="experts">experts</option>
+                        </select>
+                        </div>
+
+                        <div class="form-control">
+                        <button class="btn btn-primary" id="order"
+                                onclick="toggle()">Descending</button>
+                        </div>
+                        <div class="form-control">
+                        <button class="btn btn-primary"
+                                onclick="delta(1)">Previous</button>
+                        <button class="btn btn-primary"
+                                onclick="delta(-1)">Next</button>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
