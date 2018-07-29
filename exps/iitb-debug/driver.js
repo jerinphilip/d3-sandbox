@@ -96,7 +96,7 @@ var update_histogram = function(bins) {
 
 var current = {
     "direction": "en-hi",
-    "dataset": "ted"
+    "dataset": "refined-4"
 };
 
 
