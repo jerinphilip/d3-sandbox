@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title> Boilerplate </title>
+    <link rel="stylesheet" type="text/css" href="/d3-sandbox/common/common.css"/>
+    <link rel="stylesheet" type="text/css" href="custom.css"/>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+            <h2> Translation Quality </h2>
+            <h3> Summary </h3>
+            <p> The following histogram summarizes BLEU ranges for
+            predictions in the test-set.  Click on bars to see the
+            translations with BLEU in corresponding interval. </p>
+
+            <p> Average BLEU: <span id="avg-bleu"></span> </p>
+
+            <div class="row">
+                <div class="col-8">
+                    <svg height="400" width="800"></svg>
+                </div>
+                <div class="col-4">
+                    <div>
+                        Dataset:
+                    <select name="dataset" class="form-control"
+                            onchange="load_summary(this.value, null)">
+                        <option value="books">books</option>
+                        <option value="hiencorp">hiencorp</option>
+                        <option value="govtweb">govtweb</option>
+                        <option value="tanzil">tanzil</option>
+                        <option value="ted">ted</option>
+                        <option value="refined">refined</option>
+                        <option value="refined-2">refined-2</option>
+                        <option value="refined-3">refined-3</option>
+                        <option value="refined-4">refined-4</option>
+                        <option value="refined-5">refined-5</option>
+                    </select>
+                    </div>
+                    <div>
+                        Direction:
+                    <select name="direction"
+                            onchange="load_summary(null, this.value)"
+                            class="form-control">
+                        <option value="en-hi">en-hi</option>
+                        <option value="hi-en">hi-en</option>
+                    </select>
+                    </div>
+                </div>
+            </div>
+            <h3> Individual Samples </h3>
+            <div class="row">
+                <div class="col-12" id="content">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="/d3-sandbox/common/conventional-margin.js"></script>
+    <script src="driver.js"></script>
+</body>
+
