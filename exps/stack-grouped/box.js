@@ -1,4 +1,11 @@
+
 (function() {
+
+d3.functor = function functor(v) {
+  return typeof v === "function" ? v : function() {
+    return v;
+  };
+};
 
 // Inspired by http://informationandvisualization.de/blog/box-plot
 d3.box = function() {
@@ -34,12 +41,12 @@ d3.box = function() {
           : d3.range(n);
 
       // Compute the new x-scale.
-      var x1 = d3.scale.linear()
+      var x1 = d3.scaleLinear()
           .domain(domain && domain.call(this, d, i) || [min, max])
           .range([height, 0]);
 
       // Retrieve the old x-scale, if this is an update.
-      var x0 = this.__chart__ || d3.scale.linear()
+      var x0 = this.__chart__ || d3.scaleLinear()
           .domain([0, Infinity])
           .range(x1.range());
 
