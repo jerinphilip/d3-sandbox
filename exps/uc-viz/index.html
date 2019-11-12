@@ -9,22 +9,38 @@
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
-<style>
+        <style>
 .example {
     margin: 2em;
 }
 
-</style>
+        </style>
     </head>
     <body>
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                <p> Colors are mostly analogous to traffic lights. Red is bad,
-                green is good, yellow somewhere in between. </p>
+                    <h1> Word level comparison - uncertainty metrics </h1>
 
-                <div id="space" class="col-12">
-                </div>
+                    <h2> Description </h2>
+                    <p> Vanilla belongs to the class of metrics derivable
+                    from the model without further modifications - entropy,
+                    max probability and the likes. </p>
+
+                    <p> For epistemic, I'm demonstrating both the
+                    expectation and variance, as Wang et. Al seems to have
+                    used both. In theory, expectation should end up
+                    something like the max-probability only.</p>
+
+                    <p> [src], [tgt] indicates the source and target.
+                    The stuff in colours are hypotheses, and their
+                    respective uncertainties (relative) encoded in
+                    colors. Colors are analogous to traffic lights. Red is bad,
+                    green is good, yellow somewhere in between. </p>
+
+                    <h2> Visualizations </h2>
+                    <div id="space" class="col-12">
+                    </div>
                 </div>
             </div>
         </div>
