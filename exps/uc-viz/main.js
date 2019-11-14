@@ -68,8 +68,7 @@ var display = function(root, data){
     var dont_invert = false;
 
     var clean = function(s){
-        s = s.replace(" ", "")
-        return s;
+        return s.split(' ').join('');
     };
 
     // Append src and tgt
